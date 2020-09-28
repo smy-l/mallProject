@@ -1,0 +1,133 @@
+package club.banyuan.admin.entity;
+
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * ums_admin
+ * @author 
+ */
+public class UmsAdmin implements Serializable {
+    private Long id;
+
+    private String username;
+
+    private String password;
+
+    /**
+     * 头像
+     */
+    private String icon;
+
+    /**
+     * 邮箱
+     */
+    private String email;
+
+    /**
+     * 昵称
+     */
+    private String nick_name;
+
+    /**
+     * 备注信息
+     */
+    private String note;
+
+    /**
+     * 创建时间
+     */
+    private Date create_time;
+
+    /**
+     * 最后登录时间
+     */
+    private Date login_time;
+
+    /**
+     * 帐号启用状态：0->禁用；1->启用
+     */
+    private Integer status;
+
+    private static final long serialVersionUID = 1L;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getNick_name() {
+        return nick_name;
+    }
+
+    public void setNick_name(String nick_name) {
+        this.nick_name = nick_name;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public Date getCreate_time() {
+        return create_time;
+    }
+
+    public void setCreate_time(Date create_time) {
+        this.create_time = create_time;
+    }
+
+    public Date getLogin_time() {
+        return login_time;
+    }
+
+    public void setLogin_time(Date login_time) {
+        this.login_time = login_time;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+}

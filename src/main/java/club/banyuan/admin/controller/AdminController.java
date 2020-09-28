@@ -1,8 +1,10 @@
-package club.banyuan.mall.mgt.controller;
+package club.banyuan.admin.controller;
 
-import club.banyuan.mall.mgt.dto.AdminLogin;
+import club.banyuan.admin.dao.UmsAdminDao;
+import club.banyuan.admin.entity.UmsAdmin;
 import club.banyuan.mall.mgt.dto.Message;
 import club.banyuan.mall.mgt.dto.TokenMsg;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,15 +13,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class AdminController {
 
+  @Autowired
+  private UmsAdminDao adminDao;
 
   @RequestMapping("/admin/login")
   @ResponseBody
-  public Message adminLogin(@RequestBody AdminLogin adminLogin) {
+  public Message adminLogin(@RequestBody UmsAdmin adminLogin) {
     System.out.println(adminLogin.getUsername());
     System.out.println(adminLogin.getPassword());
+    UmsAdmin admin = adminDao.login(adminLogin.getUsername(), adminLogin.getPassword());
     Message message = new Message();
-    message.setCode(200);
-    message.setMessage("操作成功");
+    if (admin != null) {
+      message.success();
+    } else {
+      message.fail();
+    }
 
     TokenMsg tokenMsg = new TokenMsg();
     tokenMsg.setToken(

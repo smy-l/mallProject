@@ -34,4 +34,15 @@ public class Message {
   public void setData(Object data) {
     this.data = data;
   }
+
+  public void success() {
+    this.setCode(200);
+    this.setMessage("操作成功");
+  }
+
+  public void fail() {
+    this.setCode(400);
+    this.setMessage("操作失败");
+  }
+
 }
