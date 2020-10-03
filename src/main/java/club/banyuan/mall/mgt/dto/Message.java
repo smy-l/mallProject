@@ -1,5 +1,8 @@
 package club.banyuan.mall.mgt.dto;
 
+import java.util.HashMap;
+import java.util.List;
+
 /**
  * code : 200
  * message : 操作成功
@@ -10,6 +13,7 @@ public class Message {
   private int code;
   private String message;
   private Object data;
+
 
   public int getCode() {
     return code;
@@ -35,14 +39,73 @@ public class Message {
     this.data = data;
   }
 
-  public void success() {
+  public void loginSuccess() {
     this.setCode(200);
     this.setMessage("操作成功");
+    TokenMsg tokenMsg = new TokenMsg();
+    tokenMsg.setToken(
+            "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE2MDExNzU1MTQzMzIsImV4cCI6MTYwMTc4MDMxNH0.V7sicTWS8A2SGPlks9E8qkSebH55H7W0AKokXiBLeJ-ZGrfz4WpfgPmHYwpAZaqfe9vNG0TT8qd8KtKsxoBMkg");
+    tokenMsg.setTokenHead("Bearer");
+    this.setData(tokenMsg);
+  }
+
+  public void success(List<?> data) {
+    this.setCode(200);
+    this.setMessage("操作成功");
+    this.setData(data);
   }
 
   public void fail() {
     this.setCode(400);
     this.setMessage("操作失败");
   }
+
+
+
+  @Override
+  public String toString() {
+    return "Message{" +
+            "code=" + code +
+            ", message='" + message + '\'' +
+            ", data=" + data +
+            '}';
+  }
+
+//  public static Message success() {
+//    Message message = new Message();
+//    message.put("code", 200);
+//    message.put("message", "操作成功");
+////    message.put("tokenHead", "Bearer");
+////    message.put("token",
+////            "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE2MDExNzU1MTQzMzIsImV4cCI6MTYwMTc4MDMxNH0.V7sicTWS8A2SGPlks9E8qkSebH55H7W0AKokXiBLeJ-ZGrfz4WpfgPmHYwpAZaqfe9vNG0TT8qd8KtKsxoBMkg")
+//    return message;
+//  }
+//
+//
+//  public static Message loginSuccess() {
+//    Message message = new Message();
+//    message.put("code", 200);
+//    message.put("message", "操作成功");
+//    message.put("tokenHead", "Bearer");
+//    message.put("token",
+//            "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE2MDExNzU1MTQzMzIsImV4cCI6MTYwMTc4MDMxNH0.V7sicTWS8A2SGPlks9E8qkSebH55H7W0AKokXiBLeJ-ZGrfz4WpfgPmHYwpAZaqfe9vNG0TT8qd8KtKsxoBMkg");
+//    return message;
+//  }
+//
+//  public static Message success(List<?> data) {
+//    Message message = new Message();
+//    message.put("data", data);
+//    return message;
+//  }
+//
+//  public static Message fail() {
+//    Message message = new Message();
+//    message.put("code", 404);
+//    message.put("message", "操作失败");
+//    return message;
+//  }
+
+
+
 
 }

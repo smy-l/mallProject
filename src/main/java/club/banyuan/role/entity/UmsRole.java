@@ -23,12 +23,12 @@ public class UmsRole implements Serializable {
     /**
      * 后台用户数量
      */
-    private Integer admin_count;
+    private Integer adminCount;
 
     /**
      * 创建时间
      */
-    private Date create_time;
+    private String createTime;
 
     /**
      * 启用状态：0->禁用；1->启用
@@ -63,20 +63,20 @@ public class UmsRole implements Serializable {
         this.description = description;
     }
 
-    public Integer getAdmin_count() {
-        return admin_count;
+    public Integer getAdminCount() {
+        return adminCount;
     }
 
-    public void setAdmin_count(Integer admin_count) {
-        this.admin_count = admin_count;
+    public void setAdminCount(Integer adminCount) {
+        this.adminCount = adminCount;
     }
 
-    public Date getCreate_time() {
-        return create_time;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setCreate_time(Date create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 
     public Integer getStatus() {

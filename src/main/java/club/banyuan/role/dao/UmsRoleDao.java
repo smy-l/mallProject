@@ -1,12 +1,15 @@
 package club.banyuan.role.dao;
 
 import club.banyuan.role.entity.UmsRole;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface UmsRoleDao {
 
-    List<UmsRole> getRoleList();
+    List<UmsRole> getRoleListAll();
+
+    List<UmsRole> getRoleList(@Param("keyword") String keyword, @Param("pageSize") Integer pageSize, @Param("pageNum") Integer pageNum);
 
     int deleteByPrimaryKey(Long id);
 

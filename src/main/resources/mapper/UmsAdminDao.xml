@@ -7,10 +7,10 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="icon" jdbcType="VARCHAR" property="icon" />
     <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="nick_name" jdbcType="VARCHAR" property="nick_name" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
     <result column="note" jdbcType="VARCHAR" property="note" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
-    <result column="login_time" jdbcType="TIMESTAMP" property="login_time" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -18,19 +18,35 @@
     `status`
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from ums_admin
     where id = #{id,jdbcType=BIGINT}
   </select>
-    <select id="login" resultType="club.banyuan.admin.entity.UmsAdmin">
+    <select id="login" resultMap="BaseResultMap">
       select
       <include refid="Base_Column_List"/>
       from ums_admin
       where username = #{username}
       and password = #{password}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <select id="getAdminList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from ums_admin
+    <where>
+      <if test="keyword != null and keyword != ''">
+        `username` like concat('%', #{keyword}, '%') or nick_name like concat('%', #{keyword}, '%')
+      </if>
+    </where>
+    limit #{pageNum}, #{pageSize}
+  </select>
+  <select id="getList" resultType="club.banyuan.admin.entity.UmsAdmin">
+    select
+    <include refid="Base_Column_List"/>
+    from ums_admin
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from ums_admin
     where id = #{id,jdbcType=BIGINT}
   </delete>
@@ -40,8 +56,8 @@
       create_time, login_time, `status`
       )
     values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{nick_name,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
-      #{create_time,jdbcType=TIMESTAMP}, #{login_time,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}
+      #{email,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP}, #{loginTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="club.banyuan.admin.entity.UmsAdmin" useGeneratedKeys="true">
@@ -89,16 +105,16 @@
         #{email,jdbcType=VARCHAR},
       </if>
       <if test="nick_name != null">
-        #{nick_name,jdbcType=VARCHAR},
+        #{nickName,jdbcType=VARCHAR},
       </if>
       <if test="note != null">
         #{note,jdbcType=VARCHAR},
       </if>
       <if test="create_time != null">
-        #{create_time,jdbcType=TIMESTAMP},
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="login_time != null">
-        #{login_time,jdbcType=TIMESTAMP},
+        #{loginTime,jdbcType=TIMESTAMP},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -121,16 +137,16 @@
         email = #{email,jdbcType=VARCHAR},
       </if>
       <if test="nick_name != null">
-        nick_name = #{nick_name,jdbcType=VARCHAR},
+        nick_name = #{nickName,jdbcType=VARCHAR},
       </if>
       <if test="note != null">
         note = #{note,jdbcType=VARCHAR},
       </if>
       <if test="create_time != null">
-        create_time = #{create_time,jdbcType=TIMESTAMP},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="login_time != null">
-        login_time = #{login_time,jdbcType=TIMESTAMP},
+        login_time = #{loginTime,jdbcType=TIMESTAMP},
       </if>
       <if test="status != null">
         `status` = #{status,jdbcType=INTEGER},
@@ -144,10 +160,10 @@
       `password` = #{password,jdbcType=VARCHAR},
       icon = #{icon,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
-      nick_name = #{nick_name,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
       note = #{note,jdbcType=VARCHAR},
-      create_time = #{create_time,jdbcType=TIMESTAMP},
-      login_time = #{login_time,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      login_time = #{loginTime,jdbcType=TIMESTAMP},
       `status` = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>

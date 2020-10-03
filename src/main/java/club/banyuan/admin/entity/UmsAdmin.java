@@ -27,7 +27,7 @@ public class UmsAdmin implements Serializable {
     /**
      * 昵称
      */
-    private String nick_name;
+    private String nickName;
 
     /**
      * 备注信息
@@ -37,12 +37,12 @@ public class UmsAdmin implements Serializable {
     /**
      * 创建时间
      */
-    private Date create_time;
+    private String createTime;
 
     /**
      * 最后登录时间
      */
-    private Date login_time;
+    private String loginTime;
 
     /**
      * 帐号启用状态：0->禁用；1->启用
@@ -91,12 +91,12 @@ public class UmsAdmin implements Serializable {
         this.email = email;
     }
 
-    public String getNick_name() {
-        return nick_name;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setNick_name(String nick_name) {
-        this.nick_name = nick_name;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public String getNote() {
@@ -107,20 +107,20 @@ public class UmsAdmin implements Serializable {
         this.note = note;
     }
 
-    public Date getCreate_time() {
-        return create_time;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setCreate_time(Date create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 
-    public Date getLogin_time() {
-        return login_time;
+    public String getLoginTime() {
+        return loginTime;
     }
 
-    public void setLogin_time(Date login_time) {
-        this.login_time = login_time;
+    public void setLoginTime(String loginTime) {
+        this.loginTime = loginTime;
     }
 
     public Integer getStatus() {
@@ -129,5 +129,21 @@ public class UmsAdmin implements Serializable {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "UmsAdmin{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", icon='" + icon + '\'' +
+                ", email='" + email + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", note='" + note + '\'' +
+                ", createTime=" + createTime +
+                ", loginTime=" + loginTime +
+                ", status=" + status +
+                '}';
     }
 }
